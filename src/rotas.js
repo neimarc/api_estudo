@@ -6,3 +6,5 @@ const rotas = express();
 
 rotas.post('/usuario/saudar', saudar);
 rotas.post('/usuario/cadastrar', cadastrarUsuario);
+
+module.exports = rotas
