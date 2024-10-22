@@ -1,11 +1,13 @@
-const yup = require('yupConfig');
+const yup = require('./yupConfig');
 
 
 
 const saudarSchema = yup.object().shape({
-    nome: yup.string().required(),
-    sexo: yup.string().required(),
-    vezes: yup.number().required()
+    nome_usuario: yup.string().required(),
+    sexo_usuario: yup.string().required(),
+    pergunto_quantas_vezes: yup.number().required(),
+    apresentar_IA: yup.string().required()
+
 });
 
 
