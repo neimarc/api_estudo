@@ -19,17 +19,17 @@ const saudar = async (req, res) => {
 
         if (apresentar_IA) {
             if (apresentar_IA == "Sim" || apresentar_IA == "sim") {
-                const ola = `Olá, ${nome_usuario}!`;
-                const apresentacao = `Eu sou a versão IA da Ellen Santos, estudante do curso técnico em Astrologia e estagiária da SmartLevel. Atualmete, moro em Barreiras, tenho 40 anos de idade, cinco animais (um cachorro, um gato, um rato, uma cobra e um namorado), sou gótica, de Áries e, nas horas vagas, gosto de ouvir rock e assistir filmes e séries de terror e ficção científica. Estou estudando horrores neste ano (pegando 34 matérias), mais que o Mark Zuckerberg nos tempos da Havard, porque o meu objetivo é ficar rica e ir morar em Dubai. Mas por hora, no estágio, estou tendo que aturar um chato, com nome de jogador famoso, de futebol, que, a cada manhã, me pede para instalar alguma coisa em minha máquina, e à noite, me arruma mais dores de cabeça no meu horário de estudo. Ai, socorro, meu Deus do céu!!!`;
-                const Aperguntar = `Sem mais sobre mim, eu lhe pergunto:`;
+                let ola = `Olá, ${nome_usuario}!`;
+                let apresentacao = `Eu sou a versão IA da Ellen Daniel, estudante do curso técnico em Astrologia e estagiária da SmartLevel. Atualmete, moro em Barreiras, tenho 40 anos de idade, cinco animais (um cachorro, um gato, um rato, uma cobra e um namorado), sou gótica, de Áries e, nas horas vagas, gosto de ouvir rock e assistir filmes e séries de terror e ficção científica. Estou estudando horrores neste ano (pegando 34 matérias), mais que o Mark Zuckerberg nos tempos da Havard, porque o meu objetivo é ficar rica e ir morar em Dubai. Mas por hora, no estágio, estou tendo que aturar um chato, com nome de jogador famoso, de futebol, que, a cada manhã, me pede para instalar alguma coisa em minha máquina, e à noite, me arruma mais dores de cabeça no meu horário de estudo. Ai, socorro, meu Deus do céu!!!`;
+                let Aperguntar = `Sem mais sobre mim, eu lhe pergunto:`;
                 resposta.push(ola);
                 resposta.push(apresentacao);
                 resposta.push(Aperguntar)
 
             } else {
-                const ola = `Olá, ${nome_usuario}!`;
-                const apresentacao = `Que pena que você não quis que eu me apresentasse, meu bem!`;
-                const Aperguntar = `Já que não sou rancorosa, vou lhe perguntar assim mesmo:`;
+                let ola = `Olá, ${nome_usuario}!`;
+                let apresentacao = `Que pena que você não quis que eu me apresentasse, meu bem!`;
+                let Aperguntar = `Já que não sou rancorosa, vou lhe perguntar assim mesmo:`;
                 resposta.push(ola);
                 resposta.push(apresentacao);
                 resposta.push(Aperguntar)
@@ -38,37 +38,48 @@ const saudar = async (req, res) => {
         }
 
         for (let i = 0; i < pergunto_quantas_vezes; i++) {
+
+            let repetir = "Vou repetir:";
+
             if (sexo_usuario == "masculino" || sexo_usuario == "Masculino") {
+
+                let saudacao = `${nome_usuario}, está disposto a aprender sobre tecnologia hoje, meu querido? `;
+
                 if (pergunto_quantas_vezes == 1) {
-                    const saudacao = `${nome_usuario}: Está disposto a aprender sobre tecnologia hoje, meu querido? `;
-                    resposta.push(saudacao)
-                } else {
-                    const saudacao = `${nome_usuario}: Está disposto a aprender sobre tecnologia hoje, meu querido? `;
-                    const repetir = "Vou repetir:";
 
                     resposta.push(saudacao)
-                    if (i < pergunto_quantas_vezes - 1)
+
+                } else {
+
+                    resposta.push(saudacao)
+
+                    if (i < pergunto_quantas_vezes - 1) {
+
                         resposta.push(repetir);
+                    }
                 }
 
             } else if (sexo_usuario == "feminino" || sexo_usuario == "Feminino") {
+
+                let saudacao = `${nome_usuario}, está disposta a aprender sobre tecnologia hoje, minha querida? `;
+
                 if (pergunto_quantas_vezes == 1) {
-                    const saudacao = `${nome_usuario}: Está disposta a aprender sobre tecnologia hoje, minha querida? `;
-                    resposta.push(saudacao)
-                } else {
-                    const saudacao = `${nome_usuario}: Está disposta a aprender sobre tecnologia hoje, minha querida? `;
-                    const repetir = "Vou repetir:";
 
                     resposta.push(saudacao)
+
+                } else {
+
+                    resposta.push(saudacao)
+
                     if (i < pergunto_quantas_vezes - 1)
                         resposta.push(repetir);
                 }
             } else {
-                res.status(404).send(`Desculpe, ${nome_usuario}, mas eu não entendi o que você é, meu bem...`);
+                return res.status(400).json(`Desculpe, ${nome_usuario}, mas eu não entendi o que você é, meu bem...`);
             }
         }
 
-        res.status(200).json(resposta)
+        return res.status(200).json(resposta)
 
     } catch (erro) {
         res.status(500).json({ mensagem: `Erro no servidor.Tente novamente mais tarde.` })
