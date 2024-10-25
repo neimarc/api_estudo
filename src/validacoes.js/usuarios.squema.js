@@ -6,7 +6,7 @@ const saudarSchema = yup.object().shape({
     nome_usuario: yup.string().required(),
     sexo_usuario: yup.string().required(),
     pergunto_quantas_vezes: yup.number().required(),
-    apresentar_IA: yup.string().required()
+    apresentar_IA: yup.string()
 
 });
 
